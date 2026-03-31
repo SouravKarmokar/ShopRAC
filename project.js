@@ -23,15 +23,7 @@ const BLOCKED_IPS = [
 ];
 
 const ipFilter = (req, res, next) => {
-    const clientIP = req.ip.replace('::ffff:', ''); // Strip IPv6 wrapper
-
-    if (BLOCKED_IPS.includes(clientIP)) {
-        return res.status(403).json({ error: `IP Blocked: ${clientIP} is banned.` });
-    }
-    if (ALLOWED_IPS.includes(clientIP)) {
-        return next();
-    }
-    return res.status(403).json({ error: `IP Not Authorized: ${clientIP} is not on the access list.` });
+    next(); // open to all IPs — token auth + RAC handles security
 };
 
 project.use(ipFilter); // Applied globally — ALL routes go through this first
