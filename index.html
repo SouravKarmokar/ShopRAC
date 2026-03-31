@@ -689,7 +689,7 @@ async function attemptLogin() {
     btn.innerText = 'Signing in…';
 
     try {
-        const res  = await fetch('http://localhost:3000/auth/login', {
+        const res  = await fetch('https://shoprac.onrender.com/auth/login', {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify({ userId: uid, password: pass }),
@@ -748,7 +748,7 @@ function enterDashboard(data) {
 
 async function logout() {
     if (currentToken) {
-        await fetch('http://localhost:3000/auth/logout', {
+        await fetch('https://shoprac.onrender.com/auth/logout', {
             method: 'POST',
             headers: { 'Authorization': 'Bearer ' + currentToken },
         }).catch(() => {});
@@ -759,7 +759,7 @@ async function logout() {
 function show(id) { document.getElementById(id).classList.remove('hidden'); }
 
 // ── API ─────────────────────────────────────────────
-const API = 'http://localhost:3000';
+const API = 'https://shoprac.onrender.com';
 
 async function apiCall(method, path, body = null) {
     try {
